@@ -279,7 +279,7 @@
 		//Characters
 		{Char_BFZoom_New,      FIXED_DEC(156,1),   FIXED_DEC(170,1)},
 		{Char_WBShaggy_New,  FIXED_DEC(-156,1),   FIXED_DEC(170,1)},
-		{Char_GF_New,     FIXED_DEC(0,1),  FIXED_DEC(100,1)},
+		{Char_GF_New,     FIXED_DEC(0,1),  FIXED_DEC(75,1)},
 		
 		//Stage background
 		Back_Week9_New,
@@ -295,7 +295,7 @@
 		//Characters
 		{Char_BFZoom_New,      FIXED_DEC(156,1),   FIXED_DEC(170,1)},
 		{Char_PShaggy_New,  FIXED_DEC(-156,1),   FIXED_DEC(175,1)},
-		{Char_GF_New,     FIXED_DEC(0,1),  FIXED_DEC(100,1)},
+		{Char_GF_New,     FIXED_DEC(0,1),  FIXED_DEC(75,1)},
 		
 		//Stage background
 		Back_Week9_New,
