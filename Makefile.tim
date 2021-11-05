@@ -8,6 +8,7 @@ all: \
 	iso/stage/hud0weeb.tim \
 	iso/bf/main.arc \
 	iso/bfmatt/main.arc \
+	iso/bfmatt/dead.arc \
 	iso/bf/dead.arc \
 	iso/bf/weeb.arc \
 	iso/both/main.arc \
@@ -56,7 +57,8 @@ iso/menu/menu.arc: iso/menu/back.tim iso/menu/ng.tim iso/menu/story.tim iso/menu
 
 # BF
 iso/bf/main.arc: iso/bf/idle.tim iso/bf/hit0.tim iso/bf/miss0.tim iso/bf/hit1.tim iso/bf/miss1.tim iso/bf/peace.tim iso/bf/dead0.tim
-iso/bfmatt/main.arc: iso/bfmatt/idle0.tim iso/bfmatt/idle1.tim iso/bfmatt/idle2.tim iso/bfmatt/idle3.tim iso/bfmatt/idle4.tim iso/bfmatt/idle5.tim iso/bfmatt/left0.tim iso/bfmatt/left1.tim iso/bfmatt/down0.tim iso/bfmatt/down1.tim iso/bfmatt/up0.tim iso/bfmatt/up1.tim iso/bfmatt/right0.tim iso/bfmatt/right1.tim iso/bfmatt/miss0.tim iso/bfmatt/miss1.tim iso/bfmatt/miss2.tim iso/bfmatt/miss3.tim iso/bfmatt/retry.tim
+iso/bfmatt/main.arc: iso/bfmatt/idle0.tim iso/bfmatt/idle1.tim iso/bfmatt/idle2.tim iso/bfmatt/idle3.tim iso/bfmatt/idle4.tim iso/bfmatt/idle5.tim iso/bfmatt/left0.tim iso/bfmatt/left1.tim iso/bfmatt/down0.tim iso/bfmatt/down1.tim iso/bfmatt/up0.tim iso/bfmatt/up1.tim iso/bfmatt/right0.tim iso/bfmatt/right1.tim iso/bfmatt/miss0.tim iso/bfmatt/miss1.tim iso/bfmatt/miss2.tim iso/bfmatt/miss3.tim iso/bfmatt/dead0.tim
+iso/bfmatt/dead.arc: iso/bfmatt/dead1.tim iso/bfmatt/dead2.tim iso/bfmatt/retry.tim
 iso/bf/dead.arc: iso/bf/dead1.tim iso/bf/dead2.tim iso/bf/retry.tim
 iso/bf/weeb.arc: iso/bf/weeb0.tim iso/bf/weeb1.tim
 
