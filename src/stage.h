@@ -17,7 +17,6 @@
 #include "object.h"
 
 //Stage constants
-
 #define INPUT_LEFT  (PAD_LEFT  | PAD_SQUARE | PAD_L2)
 #define INPUT_DOWN  (PAD_DOWN  | PAD_CROSS | PAD_L1)
 #define INPUT_UP    (PAD_UP    | PAD_TRIANGLE | PAD_R1)
