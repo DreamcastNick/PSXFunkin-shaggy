@@ -203,6 +203,10 @@ Character *Char_Both_New(fixed_t x, fixed_t y)
 	Character_Init((Character*)this, x, y);
 	
 	//Set character stage information
+
+	this->character.spec = CHAR_SPEC_SWAPANIM;
+
+
 	this->character.health_i = 3;
 	
 	this->character.focus_x = FIXED_DEC(25,1);

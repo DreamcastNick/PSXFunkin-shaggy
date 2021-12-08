@@ -403,7 +403,11 @@ static void Stage_SustainCheck(PlayerState *this, u8 type)
 		
 		//Hit the note
 		note->type |= NOTE_FLAG_HIT;
-		
+
+		if (this->character->spec & CHAR_SPEC_SWAPANIM && stage.song_step >= 1152 && stage.song_step >= 1408 || this->character->spec & CHAR_SPEC_SWAPANIM && stage.song_step >= 2624 && stage.song_step >= 2879)
+		this->character->set_anim(this->character, note_anims[type & 0x3][2]);
+
+		else
 		this->character->set_anim(this->character, note_anims[type & 0x3][(note->type & NOTE_FLAG_ALT_ANIM) != 0]);
 
 		Stage_StartVocal();
@@ -1454,7 +1458,26 @@ void Stage_Tick(void)
 						{
 							//Opponent hits note
 							Stage_StartVocal();
-							if (note->type & NOTE_FLAG_SUSTAIN)
+
+							if (stage.mode != StageMode_Swap &&  stage.stage_id == StageId_4_3 && stage.song_step >= 1152 && stage.song_step <= 1408 && note->type & NOTE_FLAG_SUSTAIN || stage.mode != StageMode_Swap && stage.stage_id == StageId_4_4 && stage.song_step >= 1152 && stage.song_step <= 1408 && note->type & NOTE_FLAG_SUSTAIN)
+						        opponent_snote = note_anims[note->type & 0x3][2];
+
+							else if (stage.stage_id == StageId_4_3 && stage.song_step >= 1152 && stage.song_step <= 1408|| stage.stage_id == StageId_4_4 && stage.song_step >= 1152 && stage.song_step <= 1408)
+							{
+						        opponent_snote = note_anims[note->type & 0x3][2];
+								note->type |= NOTE_FLAG_HIT;
+							}
+
+							else if (stage.mode != StageMode_Swap &&  stage.stage_id == StageId_4_3 && stage.song_step >= 2624 && stage.song_step <= 2876 && note->type & NOTE_FLAG_SUSTAIN || stage.mode != StageMode_Swap && stage.stage_id == StageId_4_4 && stage.song_step >= 2624 && stage.song_step <= 2879 && note->type & NOTE_FLAG_SUSTAIN)
+						        opponent_snote = note_anims[note->type & 0x3][2];
+
+							else if (stage.stage_id == StageId_4_3 && stage.song_step >= 2624 && stage.song_step <= 2879|| stage.stage_id == StageId_4_4 && stage.song_step >= 2624 && stage.song_step <= 2879)
+							{
+						        opponent_snote = note_anims[note->type & 0x3][2];
+								note->type |= NOTE_FLAG_HIT;
+							}
+
+							else if (note->type & NOTE_FLAG_SUSTAIN)
 								opponent_snote = note_anims[note->type & 0x3][(note->type & NOTE_FLAG_ALT_ANIM) != 0];
 							else
 								opponent_anote = note_anims[note->type & 0x3][(note->type & NOTE_FLAG_ALT_ANIM) != 0];
