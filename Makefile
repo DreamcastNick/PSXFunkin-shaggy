@@ -53,6 +53,7 @@ SRCS = src/main.c \
        src/character/gshaggy.c \
        src/character/wbshaggy.c \
        src/character/pshaggy.c \
+       src/character/spamton.c \
        src/character/bfzoom.c \
        src/object.c \
        src/object/combo.c \

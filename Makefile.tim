@@ -34,6 +34,7 @@ all: \
 	iso/gshaggy/main.arc \
 	iso/wbshaggy/main.arc \
 	iso/pshaggy/main.arc \
+	iso/spamton/main.arc \
 	iso/week1/back.arc \
 	iso/week2/back.arc \
 	iso/week3/back.arc \
@@ -118,6 +119,9 @@ iso/wbshaggy/main.arc: iso/wbshaggy/idle0.tim iso/wbshaggy/idle1.tim iso/wbshagg
 
 # PShaggy
 iso/pshaggy/main.arc: iso/pshaggy/idle0.tim iso/pshaggy/idle1.tim iso/pshaggy/idle2.tim iso/pshaggy/idle3.tim iso/pshaggy/idle4.tim iso/pshaggy/idle5.tim iso/pshaggy/idle6.tim iso/pshaggy/left0.tim iso/pshaggy/left1.tim iso/pshaggy/left2.tim iso/pshaggy/left3.tim iso/pshaggy/down0.tim iso/pshaggy/down1.tim iso/pshaggy/down2.tim iso/pshaggy/down3.tim iso/pshaggy/up0.tim iso/pshaggy/up1.tim iso/pshaggy/right0.tim iso/pshaggy/right1.tim iso/pshaggy/right2.tim iso/pshaggy/right3.tim iso/pshaggy/right4.tim
+
+# Spamton
+iso/spamton/main.arc: iso/spamton/idle0.tim iso/spamton/idle1.tim iso/spamton/idle2.tim iso/spamton/idle3.tim iso/spamton/idle4.tim iso/spamton/idle5.tim iso/spamton/idle6.tim iso/spamton/idle7.tim iso/spamton/idle8.tim iso/spamton/left0.tim iso/spamton/left1.tim iso/spamton/left2.tim iso/spamton/left3.tim iso/spamton/down0.tim iso/spamton/down1.tim iso/spamton/down2.tim iso/spamton/down3.tim iso/spamton/up0.tim iso/spamton/up1.tim iso/spamton/right0.tim iso/spamton/right1.tim iso/spamton/right2.tim iso/spamton/right3.tim iso/spamton/right4.tim
 
 # Week 1
 iso/week1/back.arc: iso/week1/back0.tim iso/week1/back1.tim

@@ -717,7 +717,8 @@ void Menu_Tick(void)
 				{StageId_5_2, "THUNDERSTORM"},
 				{StageId_5_3, "DISSASEMBLER"},
 				{StageId_6_1, "ASTRAL CALAMITY"},
-				{StageId_6_2, "TALLADEGA"}
+				{StageId_6_2, "TALLADEGA"},
+				{StageId_1_4, "BIG SHOT"}
 			};
 			
 			//Initialize page

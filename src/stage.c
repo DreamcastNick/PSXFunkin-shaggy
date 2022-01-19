@@ -66,6 +66,7 @@ static const u16 note_key[] = {INPUT_LEFT, INPUT_DOWN, INPUT_UP, INPUT_RIGHT};
 #include "character/gshaggy.h"
 #include "character/wbshaggy.h"
 #include "character/pshaggy.h"
+#include "character/spamton.h"
 #include "character/bfzoom.h"
 
 #include "stage/dummy.h"
@@ -309,7 +310,7 @@ static void Stage_NoteCheck(PlayerState *this, u8 type)
 	//Perform note check
 	for (Note *note = stage.cur_note;; note++)
 	{
-		if (!(note->type & NOTE_FLAG_MINE))
+		if (!(note->type & (NOTE_FLAG_MINE | NOTE_FLAG_DANGER)))
 		{
 			//Check if note can be hit
 			fixed_t note_fp = (fixed_t)note->pos << FIXED_SHIFT;
@@ -322,7 +323,7 @@ static void Stage_NoteCheck(PlayerState *this, u8 type)
 			
 			//Hit the note
 			note->type |= NOTE_FLAG_HIT;
-			
+
 			this->character->set_anim(this->character, note_anims[type & 0x3][(note->type & NOTE_FLAG_ALT_ANIM) != 0]);
 			#ifndef STAGE_FUNKYFRIDAY
 				Stage_HitNote(this, type, stage.note_scroll - note_fp);
@@ -333,32 +334,49 @@ static void Stage_NoteCheck(PlayerState *this, u8 type)
 			this->arrow_hitan[type & 0x3] = stage.step_time;
 			return;
 		}
+		else if ((note->type & ( NOTE_FLAG_DANGER)))
+		{
+			//Check if danger can be hit
+			fixed_t note_fp = (fixed_t)note->pos << FIXED_SHIFT;
+			if (note_fp - (stage.late_safe * 3 / 5) > stage.note_scroll)
+				break;
+			if (note_fp + (stage.late_safe * 2 / 5) < stage.note_scroll)
+				continue;
+			if ((note->type & NOTE_FLAG_HIT) || (note->type & (NOTE_FLAG_OPPONENT | 0x3)) != type || (note->type & NOTE_FLAG_SUSTAIN))
+				continue;
+				
+				
+			//Hit the danger
+			note->type |= NOTE_FLAG_HIT;
+				
+				this->health += 120;
+				
+			this->character->set_anim(this->character, note_anims[type & 0x3][1]);
+
+			this->arrow_hitan[type & 0x3] = -1;
+			return;
+		}
+
 		else
 		{
-			#ifndef STAGE_FUNKYFRIDAY
-				//Check if mine can be hit
-				fixed_t note_fp = (fixed_t)note->pos << FIXED_SHIFT;
-				if (note_fp - (stage.late_safe * 3 / 5) > stage.note_scroll)
-					break;
-				if (note_fp + (stage.late_safe * 2 / 5) < stage.note_scroll)
-					continue;
-				if ((note->type & NOTE_FLAG_HIT) || (note->type & (NOTE_FLAG_OPPONENT | 0x3)) != type || (note->type & NOTE_FLAG_SUSTAIN))
-					continue;
-				
-				//Hit the mine
-				note->type |= NOTE_FLAG_HIT;
-				
-				if (stage.stage_id == StageId_6_1)
-					this->health -= 1500;
-				else
-					this->health -= 20000;
-				if (this->character->spec & CHAR_SPEC_MISSANIM)
-					this->character->set_anim(this->character, note_anims[type & 0x3][1]);
-				else
-					this->character->set_anim(this->character, note_anims[type & 0x3][0]);
-				this->arrow_hitan[type & 0x3] = -1;
-				return;
-			#endif
+			//Check if mine can be hit
+			fixed_t note_fp = (fixed_t)note->pos << FIXED_SHIFT;
+			if (note_fp - (stage.late_safe * 3 / 5) > stage.note_scroll)
+				break;
+			if (note_fp + (stage.late_safe * 2 / 5) < stage.note_scroll)
+				continue;
+			if ((note->type & NOTE_FLAG_HIT) || (note->type & (NOTE_FLAG_OPPONENT | 0x3)) != type || (note->type & NOTE_FLAG_SUSTAIN))
+				continue;
+			
+			//Hit the mine
+			note->type |= NOTE_FLAG_HIT;
+
+				this->health -= 20000;
+
+	       this->character->set_anim(this->character, note_anims[type & 0x3][0]);
+
+			this->arrow_hitan[type & 0x3] = -1;
+			return;
 		}
 	}
 	
@@ -692,7 +710,15 @@ static void Stage_DrawNotes()
 				continue;
 			
 			//Miss note if player's note
-			if (!(note->type & (bot | NOTE_FLAG_HIT | NOTE_FLAG_MINE)))
+			
+			if ((stage.stage_id >= StageId_4_3 && stage.stage_id <= StageId_4_4 && note->type == NOTE_FLAG_DANGER))
+			{
+			   this->health -= 20000;
+			   Stage_CutVocal();
+			   Stage_MissNote(this);
+			}
+
+			else if (!(note->type & (bot | NOTE_FLAG_HIT | NOTE_FLAG_MINE)))
 			{
 				//Missed note
 				Stage_CutVocal();
@@ -771,6 +797,32 @@ static void Stage_DrawNotes()
 					}
 				}
 			}
+			else if (note->type & NOTE_FLAG_DANGER)
+			{
+				#ifdef STAGE_FUNKYFRIDAY
+				if (1)
+					continue;
+				#endif
+				//Don't draw if already hit
+				if (note->type & NOTE_FLAG_HIT)
+					continue;
+				
+				//Draw note body
+				note_src.x = 192 + ((note->type & 0x1) << 5);
+				note_src.y = 65 + ((note->type & 0x2) << 4);
+				note_src.w = 32;
+				note_src.h = 32;
+				
+				note_dst.x = note_x[(note->type & 0x7) ^ stage.note_swap] - FIXED_DEC(16,1);
+				note_dst.y = y - FIXED_DEC(16,1);
+				note_dst.w = note_src.w << FIXED_SHIFT;
+				note_dst.h = note_src.h << FIXED_SHIFT;
+				
+				if (stage.downscroll)
+					note_dst.y = -note_dst.y - note_dst.h;
+				Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
+			}
+			
 			else if (note->type & NOTE_FLAG_MINE)
 			{
 				#ifdef STAGE_FUNKYFRIDAY
@@ -795,40 +847,8 @@ static void Stage_DrawNotes()
 				if (stage.downscroll)
 					note_dst.y = -note_dst.y - note_dst.h;
 				Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
-				
-				if (stage.stage_id == StageId_Clwn_4)
-				{
-					//Draw note halo
-					note_src.x = 160;
-					note_src.y = 128 + ((animf_count & 0x3) << 3);
-					note_src.w = 32;
-					note_src.h = 8;
-					
-					note_dst.y -= FIXED_DEC(6,1);
-					note_dst.h >>= 2;
-					
-					Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
-				}
-				else
-				{
-					//Draw note fire
-					note_src.x = 192 + ((animf_count & 0x1) << 5);
-					note_src.y = 64 + ((animf_count & 0x2) * 24);
-					note_src.w = 32;
-					note_src.h = 48;
-					
-					if (stage.downscroll)
-					{
-						note_dst.y += note_dst.h;
-						note_dst.h = note_dst.h * -3 / 2;
-					}
-					else
-					{
-						note_dst.h = note_dst.h * 3 / 2;
-					}
-					Stage_DrawTex(&stage.tex_hud0, &note_src, &note_dst, stage.bump);
-				}
 			}
+			
 			else
 			{
 				//Don't draw if already hit
@@ -990,7 +1010,7 @@ static void Stage_LoadChart(void)
 	stage.player_state[1].max_score = 0;
 	for (Note *note = stage.notes; note->pos != 0xFFFF; note++)
 	{
-		if (note->type & (NOTE_FLAG_SUSTAIN | NOTE_FLAG_MINE))
+		if (note->type & (NOTE_FLAG_SUSTAIN | NOTE_FLAG_MINE | NOTE_FLAG_DANGER))
 			continue;
 		if (note->type & NOTE_FLAG_OPPONENT)
 			stage.player_state[1].max_score += 35;
@@ -1476,6 +1496,7 @@ void Stage_Tick(void)
 						        opponent_snote = note_anims[note->type & 0x3][2];
 								note->type |= NOTE_FLAG_HIT;
 							}
+
 
 							else if (note->type & NOTE_FLAG_SUSTAIN)
 								opponent_snote = note_anims[note->type & 0x3][(note->type & NOTE_FLAG_ALT_ANIM) != 0];

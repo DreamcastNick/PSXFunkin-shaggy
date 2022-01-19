@@ -282,7 +282,7 @@
 				<file name = "kshaggy.arc" type = "data" source = "iso/kshaggy/main.arc"/>
 
 				<!-- GShaggy assets -->
-				<file name = "gshaggy.arc" type = "data" source = "iso/gshaggy/main.arc"/>'
+				<file name = "gshaggy.arc" type = "data" source = "iso/gshaggy/main.arc"/>
 
 				<!-- Both assets -->
 				<file name = "both.arc" type = "data" source = "iso/both/main.arc"/>
@@ -294,7 +294,10 @@
 				<file name = "wbshaggy.arc" type = "data" source = "iso/wbshaggy/main.arc"/>
 
 				<!-- PShaggy assets -->
-				<file name = "pshaggy.arc" type = "data" source = "iso/pshaggy/main.arc"/>'
+				<file name = "pshaggy.arc" type = "data" source = "iso/pshaggy/main.arc"/>
+
+				<!-- Spamton assets -->
+				<file name = "spamton.arc" type = "data" source = "iso/spamton/main.arc"/>'
 			</dir>
 			
 			<!-- Music -->

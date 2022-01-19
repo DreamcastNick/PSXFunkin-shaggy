@@ -46,17 +46,17 @@
 		
 		StageId_1_3, 0
 	},
-	{ //StageId_1_4 (Tutorial)
+	{ //StageId_1_4 (BIG SHOT)
 		//Characters
-		{Char_BF_New,   FIXED_DEC(60,1),  FIXED_DEC(100,1)},
-		{Char_Shaggy_New,   FIXED_DEC(0,1),  FIXED_DEC(-15,1)}, //TODO
-		{Char_GF_New,    FIXED_DEC(0,1),    FIXED_DEC(0,1)},
+		{Char_BFZoom_New,      FIXED_DEC(156,1),   FIXED_DEC(170,1)},
+		{Char_Spamton_New,  FIXED_DEC(-156,1),   FIXED_DEC(175,1)},
+		{Char_GF_New,     FIXED_DEC(0,1),  FIXED_DEC(75,1)},
 		
 		//Stage background
-		Back_Week1_New,
+		Back_Week9_New,
 		
 		//Song info
-		{FIXED_DEC(1,1),FIXED_DEC(1,1),FIXED_DEC(1,1)},
+		{FIXED_DEC(28,10),FIXED_DEC(28,10),FIXED_DEC(28,10)},
 		1, 4,
 		XA_Tutorial, 2,
 		
