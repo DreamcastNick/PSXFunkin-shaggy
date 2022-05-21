@@ -36,6 +36,7 @@
 			<!-- Stage assets -->
 			<dir name = "stage">
 				<file name = "hud0.tim" type = "data" source = "iso/stage/hud0.tim"/>
+				<file name = "hud0a2.tim" type = "data" source = "iso/stage/hud0a2.tim"/>
 				<file name = "hud1.tim" type = "data" source = "iso/stage/hud1.tim"/>
 				<file name = "hud0weeb.tim" type = "data" source = "iso/stage/hud0weeb.tim"/>
 			</dir>
@@ -139,7 +140,7 @@
 				<!-- Eggnog charts -->
 				<file name = "5.2e.cht" type = "data" source = "iso/chart/eggnog-easy.json.cht"/>
 				<file name = "5.2n.cht" type = "data" source = "iso/chart/eggnog.json.cht"/>
-				<file name = "5.2h.cht" type = "data" source = "iso/chart/eggnog-hard.json.cht"/>
+				<file name = "5.2h.cht" type = "data" source = "iso/chart/thunderstorm-hard.json.cht"/>
 				<!-- Winter Horrorland charts -->
 				<file name = "5.3e.cht" type = "data" source = "iso/chart/winter-horrorland-easy.json.cht"/>
 				<file name = "5.3n.cht" type = "data" source = "iso/chart/winter-horrorland.json.cht"/>

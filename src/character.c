@@ -84,7 +84,7 @@ void Character_PerformIdle(Character *this)
 	if (stage.flag & STAGE_FLAG_JUST_STEP)
 	{
 		if (Animatable_Ended(&this->animatable) &&
-            	    (this->animatable.anim == CharAnim_Left &&
+            	(this->animatable.anim == CharAnim_Left &&
 	    	     this->animatable.anim == CharAnim_LeftAlt &&
 	    	     this->animatable.anim == CharAnim_LeftAltB &&
 	    	     this->animatable.anim == CharAnim_Down &&

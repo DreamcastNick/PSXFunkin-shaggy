@@ -73,6 +73,8 @@ int main(int argc, char *argv[])
 	double step_crochet = crochet / 4;
 	
 	double speed = song_info["speed"];
+
+	double mania = song_info["mania"];
 	
 	std::cout << argv[1] << " speed: " << speed << " ini bpm: " << bpm << " step_crochet: " << step_crochet << std::endl;
 	
@@ -116,9 +118,13 @@ int main(int argc, char *argv[])
 		{
 			//Push main note
 			Note new_note;
+			if (mania == 2)
+			 new_note.type = (uint8_t)j[1] & (9 | NOTE_FLAG_OPPONENT);
+			else
+			 new_note.type = (uint8_t)j[1] & (3 | NOTE_FLAG_OPPONENT);
 			int sustain = (int)PosRound(j[2], step_crochet) - 1;
 			new_note.pos = (step_base * 12) + PosRound(((double)j[0] - milli_base) * 12.0, step_crochet);
-			new_note.type = (uint8_t)j[1] & (3 | NOTE_FLAG_OPPONENT);
+			
 			if (is_opponent)
 				new_note.type ^= NOTE_FLAG_OPPONENT;
 			if (j[3] == true)

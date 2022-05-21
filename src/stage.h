@@ -22,6 +22,17 @@
 #define INPUT_UP    (PAD_UP    | PAD_TRIANGLE | PAD_R1)
 #define INPUT_RIGHT (PAD_RIGHT | PAD_CIRCLE | PAD_R2)
 
+//alt inputs
+#define INPUT_LEFT1  (PAD_LEFT)
+#define INPUT_DOWN1  (PAD_DOWN)
+#define INPUT_UP1    (PAD_UP)
+#define INPUT_RIGHT1 (PAD_RIGHT)
+#define INPUT_LEFT2  (PAD_SQUARE)
+#define INPUT_DOWN2 (PAD_CROSS)
+#define INPUT_UP2    (PAD_TRIANGLE)
+#define INPUT_RIGHT2 (PAD_CIRCLE)
+#define INPUT_MIDDLE (PAD_L2 | PAD_L1 | PAD_R2 | PAD_R1)
+
 #define STAGE_FLAG_JUST_STEP     (1 << 0) //Song just stepped this frame
 #define STAGE_FLAG_VOCAL_ACTIVE  (1 << 1) //Song's vocal track is currently active
 #define STAGE_FLAG_SCORE_REFRESH (1 << 2) //Score text should be refreshed
@@ -89,6 +100,14 @@ typedef enum
 	StageDiff_Normal,
 	StageDiff_Hard,
 } StageDiff;
+
+typedef enum
+{
+	K4,
+	K6,
+	K7,
+	K9,
+} StageKeys;
 
 typedef enum
 {
@@ -167,7 +186,7 @@ typedef struct
 {
 	Character *character;
 	
-	fixed_t arrow_hitan[4]; //Arrow hit animation for presses
+	fixed_t arrow_hitan[7]; //Arrow hit animation for presses
 	
 	s16 health;
 	u16 combo;
@@ -184,11 +203,13 @@ typedef struct
 	//Stage settings
 	boolean ghost, downscroll, expsync;
 	s32 mode;
+
+	StageKeys keys;
 	
 	u32 offset;
 	
 	//HUD textures
-	Gfx_Tex tex_hud0, tex_hud1;
+	Gfx_Tex tex_hud0, tex_hud0a2, tex_hud1;
 	
 	//Stage data
 	const StageDef *stage_def;

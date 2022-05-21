@@ -12,7 +12,7 @@
 		1, 1,
 		XA_Bopeebo, 0,
 		
-		StageId_1_2, 0
+		StageId_1_2, STAGE_LOAD_FLAG
 	},
 	{ //StageId_1_2 (Eruption)
 		//Characters
@@ -28,7 +28,7 @@
 		1, 2,
 		XA_Fresh, 2,
 		
-		StageId_1_3, 0
+		StageId_1_3, STAGE_LOAD_FLAG | STAGE_LOAD_OPPONENT
 	},
 	{ //StageId_1_3 (Kaio Ken)
 		//Characters
@@ -77,7 +77,7 @@
 		2, 1,
 		XA_Spookeez, 0,
 		
-		StageId_2_2, 0
+		StageId_2_2, STAGE_LOAD_FLAG | STAGE_LOAD_OPPONENT
 	},
 	{ //StageId_2_2 (Blast)
 		//Characters
@@ -93,7 +93,7 @@
 		2, 2,
 		XA_South, 2,
 		
-		StageId_2_3, 0
+		StageId_2_3, STAGE_LOAD_FLAG
 	},
 	{ //StageId_2_3 (Super Sayian)
 		//Characters
@@ -126,7 +126,7 @@
 		3, 1,
 		XA_Pico, 0,
 		
-		StageId_3_2, 0
+		StageId_3_1, 0
 	},
 	{ //StageId_3_2 (God Eater Old)
 		//Characters
@@ -142,7 +142,7 @@
 		3, 2,
 		XA_Philly, 2,
 		
-		StageId_3_3, 0
+		StageId_3_2, 0
 	},
 	{ //StageId_3_3 (Blast Old)
 		//Characters
@@ -191,7 +191,7 @@
 		4, 2,
 		XA_High, 2,
 		
-		StageId_4_3, 0
+		StageId_4_3, STAGE_LOAD_FLAG | STAGE_LOAD_OPPONENT
 	},
 	{ //StageId_4_3 (Final Destination)
 		//Characters
@@ -240,7 +240,7 @@
 		5, 1,
 		XA_Cocoa, 0,
 		
-		StageId_5_2, 0
+		StageId_5_2, STAGE_LOAD_FLAG
 	},
 	{ //StageId_5_2 (Thunderstorm)
 		//Characters
@@ -256,7 +256,7 @@
 		5, 2,
 		XA_Eggnog, 2,
 		
-		StageId_5_3, 0
+		StageId_5_3, STAGE_LOAD_FLAG
 	},
 	{ //StageId_5_3 (Dissasmbler)
 		//Characters
@@ -305,7 +305,7 @@
 		6, 2,
 		XA_Roses, 2,
 		
-		StageId_6_3, 0
+		StageId_6_2, 0
 	},
 	{ //StageId_6_3 (Whats New Copyright Free)
 		//Characters
